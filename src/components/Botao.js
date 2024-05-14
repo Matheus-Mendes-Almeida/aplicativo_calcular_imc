@@ -1,24 +1,27 @@
-import {TouchableOpacity, Text, StyleSheet} from 'react-native'
+import { TouchableOpacity, StyleSheet } from 'react-native'
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
+import Label from './Label'
 
-const Botao = (props) => {
-    return(
-        <TouchableOpacity style={estilos.fundo} onPress={props.funcao}>
-            <Text style={estilos.texto}>{props.texto}</Text>
+const Button = (props) => {
+    const styleComponents = StyleSheet.create({
+        TouchableOpacity: {
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: props.backgroundColor,
+            borderRadius: props.borderRadius,
+            width: props.width,
+            height: props.height,
+            paddingTop: props.paddingTop,
+        },
+    });
+
+    return (
+        <TouchableOpacity style={styleComponents.TouchableOpacity} onPress={props.onPress}>
+            <Icon name={props.name} size={props.iconSize} color={props.iconColor} />
+            <Label value={props.value} color={props.color} fontSize={props.fontSize}  textAlign="center" justifyContent={props.justifyContent} alignItems={props.alignItems}/>
         </TouchableOpacity>
-    )
-}
+    );
+};
 
-const estilos = StyleSheet.create({
-    fundo: {
-        backgroundColor: '#CED0CE',
-        marginHorizontal: 10,
-        marginVertical: 5
-    },
-    texto: {
-        fontSize: 20,
-        color: 'black',
-        textAlign: 'center'
-    }
-})
-
-export default Botao
+export default Button;
